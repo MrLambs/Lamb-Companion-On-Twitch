@@ -4,13 +4,14 @@
   "description": "A Twitch bot branch off of Lamb Companion",
   "main": "src",
   "scripts": {
-    "start": "node .",
+    "start": "nodemon .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "MrLambLambs",
   "license": "ISC",
   "dependencies": {
     "esm": "^3.2.25",
+    "nodemon": "^2.0.4",
     "tmi.js": "^1.5.0"
   }
 }
