@@ -1,7 +1,8 @@
 import tmi from 'tmi.js';
-import { checkTwitchChat, options } from './util/functions';
+import { OPTIONS } from './util/constants'
+import { checkTwitchChat } from './util/functions';
 
-const client = new tmi.Client(options);
+const client = new tmi.Client(OPTIONS);
 
 client.connect().catch(console.error);
 
