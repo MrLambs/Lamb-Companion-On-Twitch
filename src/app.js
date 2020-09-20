@@ -1,29 +1,26 @@
-import { ChatClient } from 'twitch-chat-client';
+import tmi from 'tmi.js';
+import { BOT_USERNAME, options } from './util/constants';
 import { checkTwitchChat } from './util/functions';
 
-import {
-    CHANNEL_NAMES,
-    authProvider
-} from './util/constants'
+const client = new tmi.Client(options);
 
-async function main() {
-
-    const chatBot = new ChatClient(authProvider, { channels: CHANNEL_NAMES })
-    await chatBot.connect();
-    
-    chatBot.onMessage((channel, userstate, message, msg) => {
-        if (userstate == '#lamb_companion' || !message.startsWith('!')) return;
-        const args = message.slice(1).split(' ');
-        const command = args.shift().toLowerCase();
-        checkTwitchChat(userstate, message, channel);
-
-        try {
-            let commandFile = require(`./commands/${command}.js`)
-            commandFile.run(chatBot, channel, userstate, message, args);
-        } catch (e) {
-            console.log(`[ERR] ${e.message}`)
-        };
-    })
+const main = async () => {
+    await client.connect().catch(console.error);
+    client.color('CadetBlue')
 }
-
 main();
+
+client.on('message', (channel, userstate, message, self) => {
+    checkTwitchChat(userstate, message, channel, client);
+    if (self || !message.startsWith('!')) return;
+    if (userstate.username === BOT_USERNAME) return;
+
+    const args = message.slice(1).split(' ');
+    const command = args.shift().toLowerCase();
+    try {
+        let commandFile = require(`./commands/${command}.js`)
+        commandFile.run(client, channel, userstate, message, self, args);
+    } catch (e) {
+        console.log(`[ERR] ${e.message}`)
+    };
+});
