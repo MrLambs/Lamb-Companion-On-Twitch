@@ -1,7 +1,7 @@
 import { readdirSync } from 'fs';
 import { COMMANDS_COLLECTION } from '../util/constants'
 
-module.exports = (bot) => {
+module.exports = () => {
     const load = dirs => {
         const commands = readdirSync(`./src/commands/${dirs}/`).filter(d => d.endsWith('.js'));
         for (let file of commands) {
