@@ -1,8 +1,6 @@
-import tmi from 'tmi.js';
-import { OPTIONS } from './util/constants';
+import { CLIENT } from './util/constants';
 import { main } from './util/functions';
 
-const client = new tmi.Client(OPTIONS);
-main(client);
+main(CLIENT);
 
-['command', 'event'].forEach(x => require(`./handlers/${x}`)(client))
+['command', 'event'].forEach(x => require(`./handlers/${x}`)(CLIENT))

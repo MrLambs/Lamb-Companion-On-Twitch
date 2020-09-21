@@ -1,6 +1,6 @@
 import { readdirSync } from 'fs';
 
-module.exports = (client, commandsCollection) => {
+module.exports = (client) => {
     const load = dirs => {
         const events = readdirSync(`./src/events/${dirs}/`).filter(d => d.endsWith('.js'));
         for (let file of events) {
