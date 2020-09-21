@@ -2,7 +2,6 @@ import { CLIENT } from '../../util/constants'
 
 module.exports = async (client) => {
     console.log('[LOGS] Lamb_Companion is online!')
-    console.log(client.getChannels());
     setInterval(() => {
         let channelName = 'countedsheep'
         let twitterMessage = "Don't forget to follow me on Twitter for Stream announcements and the latest news. This is the best place to stay up to date with me. https://twitter.com/countedsheep1";

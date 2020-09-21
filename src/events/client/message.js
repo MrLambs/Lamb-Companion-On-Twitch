@@ -18,4 +18,4 @@ module.exports = async (client, channel, userstate, message, self) => {
     } catch (e) {
         console.log(`[ERR] ${e.message}`);
     };
-}
+};
