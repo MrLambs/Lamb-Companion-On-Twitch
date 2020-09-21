@@ -3,6 +3,7 @@ module.exports = {
         name: "twitter",
         description: "Drops a link to Twitter",
         usage: ``,
+        category: 'social'
     },
     run: async (client, channel, userstate, message, self, args, adjustedUserstate) => {
         try {

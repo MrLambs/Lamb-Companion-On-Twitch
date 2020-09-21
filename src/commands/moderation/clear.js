@@ -3,6 +3,7 @@ module.exports = {
         name: "clear",
         description: "Clears the active twitch chat.",
         usage: ``,
+        category: 'moderation'
     },
     run: async (client, channel, userstate, message, self, args, adjustedUserstate) => {
         try {

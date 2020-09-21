@@ -3,6 +3,7 @@ module.exports = {
         name: "ping",
         description: "PONG! Displays the api & bot latency",
         usage: ``,
+        category: 'moderation'
     },
     run: async (client, channel, userstate, message, self, args) => {
         try {

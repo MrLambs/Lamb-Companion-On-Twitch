@@ -3,6 +3,7 @@ module.exports = {
         name: "discord",
         description: "Drops a Discord invite to The Sheep Pen!",
         usage: ``,
+        category: 'social'
     },
     run: async (client, channel, userstate, message, self, args, adjustedUserstate) => {
         try {
