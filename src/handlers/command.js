@@ -9,5 +9,5 @@ module.exports = (bot) => {
             COMMANDS_COLLECTION.set(pull.config.name, pull);
         }
     }
-    ['moderation'].forEach(x => load(x))
+    ['moderation', 'social'].forEach(x => load(x))
 }
