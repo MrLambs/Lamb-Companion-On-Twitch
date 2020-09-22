@@ -1,5 +1,5 @@
 import bank from '../../util/bank.json';
-import { verifyBankAccount } from '../../util/casinoFunctions';
+import { verifyBankAccount } from '../../util/functions/casinoFunctions';
 
 module.exports = {
     config: {

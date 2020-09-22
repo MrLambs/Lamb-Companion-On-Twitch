@@ -1,11 +1,10 @@
-import { adjustUserObj, checkTwitchChat } from '../../util/functions';
-import { BOT_USERNAME, COMMANDS_COLLECTION } from '../../util/constants';
+import { adjustUserObj, checkTwitchChat } from '../../util/functions/chatFunctions';
+import { COMMANDS_COLLECTION, PREFIX } from '../../util/constants';
 
 module.exports = async (client, channel, userstate, message, self) => {
     let adjustedUserstate = adjustUserObj(userstate);
     checkTwitchChat(userstate, message, channel, client, adjustedUserstate);
-    if (self || !message.startsWith('!')) return;
-    if (userstate.username === BOT_USERNAME) return;
+    if (self || !message.startsWith(PREFIX)) return;
 
     const args = message.slice(1).split(' ');
     const command = args.shift().toLowerCase();

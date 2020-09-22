@@ -1,7 +1,9 @@
 import _ from 'lodash'
 import {
     BLOCKED_WORDS,
-} from './constants'
+    COMMANDS_COLLECTION,
+    PREFIX
+} from '../constants'
 
 const main = async (chatBot) => {
     await chatBot.connect().catch(console.error);
@@ -24,8 +26,16 @@ const adjustUserObj = (user) => {
 	return _.mapKeys(user, n => _.camelCase(n));
 };
 
+const getExampleCommand = (commandName) => {
+    let command = COMMANDS_COLLECTION.get(commandName.toLowerCase());
+    let exampleCommand = `(${PREFIX}${command.config.name} ${command.config.usage})`;
+
+    return exampleCommand;
+}
+
 export {
     main,
     checkTwitchChat,
-    adjustUserObj
+    adjustUserObj,
+    getExampleCommand
 };

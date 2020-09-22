@@ -4,7 +4,7 @@
   "description": "A Twitch bot branch off of Lamb Companion",
   "main": "src",
   "scripts": {
-    "start": "node .",
+    "start": "nodemon .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "MrLambLambs",

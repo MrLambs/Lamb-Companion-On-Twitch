@@ -16,7 +16,6 @@ const returnBet = (amount, bank, userstate) => {
     });
 };
 
-
 const deductBet = (amount, bank, userstate) => {
     let newBank = bank;
     newBank[userstate['user-id']].money -= Number(amount);
@@ -64,12 +63,11 @@ const getRpsResult = (bank, userstate, bet, userChoice) => {
     } else {
         return `${userstate.username}, you lost! [${userChoice.slice(0, 1).toUpperCase() + userChoice.slice(1)} (You) -VS- ${clientChoice.slice(0,1).toUpperCase() + clientChoice.slice(1)} (Bot)] [${bank[userstate['user-id']].money} Lambies]`
     }
-
 }
 
 export {
     verifyBankAccount,
     verifyBetAmount,
     deductBet,
-    getRpsResult
+    getRpsResult,
 }

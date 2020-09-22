@@ -1,16 +1,18 @@
 import { readdirSync } from 'fs';
 import { COMMANDS_COLLECTION } from '../../util/constants';
+import { getExampleCommand } from '../../util/functions/chatFunctions'
 import { stripIndents } from 'common-tags';
 
 module.exports = {
     config: {
         name: "help",
         description: "Help with bot commands. Commands are listed by category.",
-        usage: ``,
+        usage: `[optional: command name]`,
         category: 'moderation'
     },
     run: async (client, channel, userstate, message, self, args, adjustedUserstate) => {
         try {
+            let exampleCommand = getExampleCommand('help');
             if (!args[0]) {
                 const categories = readdirSync("./src/commands/")
                 categories.forEach(category => {
@@ -24,7 +26,7 @@ module.exports = {
                 })
             } else {
                 let command = COMMANDS_COLLECTION.get(args[0].toLowerCase())
-                if (!command) return client.say(channel, `Invalid command. Type !help for a list of all commands.`)
+                if (!command) return client.say(channel, `Invalid command. Type !help for a list of all commands. ${exampleCommand}`)
                 command = command.config;
                 return client.say(channel, stripIndents`
                 [Command]: !${command.name.slice(0, 1).toUpperCase() + command.name.slice(1)}

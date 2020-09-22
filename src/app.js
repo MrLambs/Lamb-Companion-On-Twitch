@@ -1,5 +1,5 @@
 import { CLIENT } from './util/constants';
-import { main } from './util/functions';
+import { main } from './util/functions/chatFunctions';
 
 main(CLIENT);
 
