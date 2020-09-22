@@ -1,5 +1,5 @@
 import { readdirSync } from 'fs';
-import { COMMANDS_COLLECTION } from '../util/constants'
+import { COMMANDS_COLLECTION } from '../util/constants/chatConstants'
 
 module.exports = () => {
     const load = dirs => {

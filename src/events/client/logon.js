@@ -1,5 +1,3 @@
-import { CLIENT_ID, COMMANDS_COLLECTION } from '../../util/constants';
-
 module.exports = async (client) => {
     console.log('[LOGS] Lamb_Companion is online!')
     setInterval(() => {

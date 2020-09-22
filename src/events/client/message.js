@@ -1,5 +1,5 @@
 import { adjustUserObj, checkTwitchChat } from '../../util/functions/chatFunctions';
-import { COMMANDS_COLLECTION, PREFIX } from '../../util/constants';
+import { COMMANDS_COLLECTION, PREFIX } from '../../util/constants/chatConstants';
 
 module.exports = async (client, channel, userstate, message, self) => {
     let adjustedUserstate = adjustUserObj(userstate);

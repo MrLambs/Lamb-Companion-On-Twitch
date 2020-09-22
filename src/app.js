@@ -1,4 +1,4 @@
-import { CLIENT } from './util/constants';
+import { CLIENT } from './util/constants/clientConstants';
 import { main } from './util/functions/chatFunctions';
 
 main(CLIENT);

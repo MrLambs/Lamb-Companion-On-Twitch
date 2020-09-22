@@ -3,7 +3,7 @@ import {
     BLOCKED_WORDS,
     COMMANDS_COLLECTION,
     PREFIX
-} from '../constants'
+} from '../constants/chatConstants'
 
 const main = async (chatBot) => {
     await chatBot.connect().catch(console.error);
