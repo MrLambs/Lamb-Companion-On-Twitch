@@ -25,12 +25,10 @@ module.exports = {
             } else {
                 let command = COMMANDS_COLLECTION.get(args[0].toLowerCase())
                 if (!command) return client.say(channel, `Invalid command. Type !help for a list of all commands.`)
-            
                 command = command.config;
-
                 return client.say(channel, stripIndents`
-                Command: ${command.name.slice(0, 1).toUpperCase() + command.name.slice(1)}
-                Description: ${command.description || "No description provided."}
+                [Command]: !${command.name.slice(0, 1).toUpperCase() + command.name.slice(1)}
+                [Description]: ${command.description || "No description provided."}
                 `)
             };
             

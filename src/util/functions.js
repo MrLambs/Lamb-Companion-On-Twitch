@@ -20,7 +20,7 @@ const checkTwitchChat = async (userstate, message, channel, client, adjustedUser
     };
 };
 
-function adjustUserObj(user) {
+const adjustUserObj = (user) => {
 	return _.mapKeys(user, n => _.camelCase(n));
 };
 
