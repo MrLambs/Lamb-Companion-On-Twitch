@@ -8,7 +8,6 @@ module.exports = async (client, channel, userstate, message, self) => {
 
     const args = message.slice(1).split(' ');
     const command = args.shift().toLowerCase();
-
     try {
         let commandFile = COMMANDS_COLLECTION.get(command);
         if (commandFile) {

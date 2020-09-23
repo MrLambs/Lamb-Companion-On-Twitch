@@ -12,7 +12,7 @@ module.exports = async (client) => {
         let online = true;
 
         if (online) {
-            // client.say(channelName, randomMessageArr[Math.floor(Math.random() * randomMessageArr.length)])
+            client.say(channelName, randomMessageArr[Math.floor(Math.random() * randomMessageArr.length)])
         } 
     }, 60 * 60 * 1000)
 }
