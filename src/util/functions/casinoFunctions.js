@@ -1,4 +1,5 @@
 import { writeFileSync } from 'fs';
+// import User from '../../models/User';
 
 const addWinnings = (amount, bank, userstate) => {
     let newBank = bank;
@@ -38,6 +39,18 @@ const verifyBankAccount = (bank, userstate) => {
     writeFileSync('./src/util/bank.json', JSON.stringify(newBank, null, 2), (err) => {
         if (err) console.log(`[ERR] ${err.message}`)
     })
+
+    // User
+    // .findOne({ id: userstate['user-id']})
+    // .then(user => {
+    //     if (!user) {
+    //         let newUser = new User ({
+    //             id: userstate['user-id'],
+    //             display_name: userstate['display-name'],
+    //             money: 100
+    //         })
+    //     }
+    // })
 }
 
 const verifyBetAmount = (amount, bank, userstate) => {

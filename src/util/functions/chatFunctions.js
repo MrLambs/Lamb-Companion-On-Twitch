@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import { mapKeys, camelCase } from 'lodash'
 import {
     BLOCKED_WORDS,
     COMMANDS_COLLECTION,
@@ -23,7 +23,7 @@ const checkTwitchChat = async (userstate, message, channel, client, adjustedUser
 };
 
 const adjustUserObj = (user) => {
-	return _.mapKeys(user, n => _.camelCase(n));
+	return mapKeys(user, n => camelCase(n));
 };
 
 const getExampleCommand = (commandName) => {

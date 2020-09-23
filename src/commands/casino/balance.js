@@ -1,4 +1,4 @@
-import bank from '../../util/bank.json';
+import bank from '../../util/config/bank.json';
 import { verifyBankAccount } from '../../util/functions/casinoFunctions';
 
 module.exports = {

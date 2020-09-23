@@ -4,8 +4,8 @@
   "description": "A Twitch bot branch off of Lamb Companion",
   "main": "src",
   "scripts": {
-    "start": "nodemon .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "author": "MrLambLambs",
   "license": "ISC",
@@ -14,6 +14,8 @@
     "esm": "^3.2.25",
     "fs": "0.0.1-security",
     "lodash": "^4.17.20",
+    "mongodb": "^3.6.2",
+    "mongoose": "^5.10.6",
     "node-fetch": "^2.6.1",
     "nodemon": "^2.0.4",
     "querystring": "^0.2.0",

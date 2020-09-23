@@ -1,4 +1,4 @@
-import bank from '../../util/bank.json';
+import bank from '../../util/config/bank.json';
 import { getExampleCommand } from '../../util/functions/chatFunctions'
 import { 
     verifyBankAccount, 
