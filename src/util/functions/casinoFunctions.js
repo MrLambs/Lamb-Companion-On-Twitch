@@ -2,11 +2,6 @@ const mongoose = require('mongoose');
 const User = require('../../models/user')
 
 const addWinnings = (amount, userstate) => {
-    // let newBank = bank;
-    // newBank[userstate['user-id']].money += (Number(amount) * 2);
-    // writeFileSync('./src/util/bank.json', JSON.stringify(newBank, null, 2), (err) => {
-    //     if (err) console.log(`[ERR] ${err.message}`)
-    // });
     try {
         User.findOne({ twitch_id: userstate['user-id'] })
             .then(curUser => {
@@ -26,12 +21,6 @@ const addWinnings = (amount, userstate) => {
 };
 
 const returnBet = (amount, userstate) => {
-    // let newBank = bank;
-    // newBank[userstate['user-id']].money += Number(amount)
-    // writeFileSync('./src/util/bank.json', JSON.stringify(newBank, null, 2), (err) => {
-    //     if (err) console.log(`[ERR] ${err.message}`)
-    // });
-
     try {
         User.findOne({ twitch_id: userstate['user-id'] })
             .then(curUser => {
@@ -85,7 +74,9 @@ const verifyBankAccount = (userstate) => {
                 User.create(newUser)
                     .then(res => console.log(`[LOGS] New user added to database`))
                     .catch(err => console.log(`[ERR] ${err.message}`))
-            } else return;
+            } else {
+                return;
+            }
         })
 }
 
@@ -94,7 +85,7 @@ const verifyBetAmount = (amount, userstate) => {
     return User
         .findOne({ twitch_id: userstate['user-id'] })
         .then(user => {
-            if (amount < user.money) return verified = true;
+            if (amount <= user.money) return verified = true;
             else return verified
         })
 

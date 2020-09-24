@@ -33,9 +33,14 @@ const getExampleCommand = (commandName) => {
     return exampleCommand;
 }
 
+const getNeededXp = (level) => {
+    return level * level * 100
+}
+
 export {
     main,
     checkTwitchChat,
     adjustUserObj,
-    getExampleCommand
+    getExampleCommand,
+    getNeededXp
 };

@@ -6,7 +6,18 @@ const userSchema = new Schema ({
     twitch_id: String,
     channel_name: String,
     display_name: String,
-    money: Number,
+    money: {
+        type: Number,
+        default: 0
+    },
+    xp: {
+        type: Number,
+        default: 0
+    },
+    level: {
+        type: Number,
+        default: 1
+    }
 });
 
 module.exports = mongoose.model('User', userSchema)
