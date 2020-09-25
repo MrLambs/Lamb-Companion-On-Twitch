@@ -17,10 +17,7 @@ module.exports = async (client, channel, userstate, message, self) => {
             }
         } else {
             let lambiesToAdd = Math.ceil(Math.random() * 5);
-            console.log(lambiesToAdd + " lambies")
             let xpToAdd = Math.ceil(Math.random() * 25);
-            console.log(xpToAdd + " xp")
-
             User
                 .findOne({ twitch_id: userstate['user-id'] }, (err, user) => {
                     if (err) console.log(`[ERR] ${err.message}`)
@@ -35,6 +32,7 @@ module.exports = async (client, channel, userstate, message, self) => {
                             level: 1
                         })
                         newUser.save().catch(err => console.log(`[ERR] ${err.message}`))
+                        console.log(`[LOGS] User added to database`)
                     } else {
                         user.money += lambiesToAdd;
                         user.xp += xpToAdd
@@ -42,9 +40,9 @@ module.exports = async (client, channel, userstate, message, self) => {
                         if (user.xp >= xpNeeded){
                             user.level++,
                             user.xp -= xpNeeded
-                            client.say(channel, `${user.display_name}, you are now level ${user.level} with ${user.xp}xp`)
+                            client.say(channel, `🎊🎉 ${user.display_name}, you are now level ${user.level} with ${user.xp}xp!! [ Next level: ${getNeededXp(user.level)}xp ] 🎉🎊`)
                         };
-                        user.save().catch(err => console.log(`[ERR] ${err.message}`))
+                        user.save().catch(err => console.log(`[ERR] ${err.message}`));
                     }
                 })
         }
