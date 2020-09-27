@@ -5,15 +5,8 @@ const addWinnings = (amount, userstate) => {
     try {
         User.findOne({ twitch_id: userstate['user-id'] })
             .then(curUser => {
-                let newUser = new User({
-                    ...curUser,
-                    money: curUser.money += (amount * 2)
-                });
-                User.findOneAndUpdate({ twitch_id: curUser.twitch_id }, newUser, { new: true })
-                    .then(res => {
-                        console.log(`[LOGS] User has been updated in database`)
-                        return res
-                    })
+                curUser.money += (amount * 2);
+                curUser.save().catch(err => console.log(`[ERR] ${err.message}`));
             })
     } catch (err) {
         console.log(`[ERR] ${err.message}`)
@@ -24,15 +17,8 @@ const returnBet = (amount, userstate) => {
     try {
         User.findOne({ twitch_id: userstate['user-id'] })
             .then(curUser => {
-                let newUser = new User({
-                    ...curUser,
-                    money: curUser.money += amount
-                });
-                User.findOneAndUpdate({ twitch_id: curUser.twitch_id }, newUser, { new: true })
-                    .then(res => {
-                        console.log(`[LOGS] User has been updated in database`)
-                        return res
-                    })
+                curUser.money += amount;
+                curUser.save().catch(err => console.log(`[ERR] ${err.message}`));
             })
     } catch (err) {
         console.log(`[ERR] ${err.message}`)
@@ -44,41 +30,13 @@ const deductBet = (amount, userstate) => {
     try {
         User.findOne({ twitch_id: userstate['user-id'] })
             .then(curUser => {
-                let newUser = new User({
-                    ...curUser,
-                    money: curUser.money -= amount
-                });
-                User.findOneAndUpdate({ twitch_id: curUser.twitch_id }, newUser, { new: true })
-                    .then(res => {
-                        console.log(`[LOGS] User has been updated in database`)
-                        return res
-                    })
+                curUser.money -= amount;
+                curUser.save().catch(err => console.log(`[ERR] ${err.message}`));
             })
     } catch (err) {
         console.log(`[ERR] ${err.message}`)
     }
 };
-
-const verifyBankAccount = (userstate) => {
-    User
-        .findOne({ twitch_id: userstate['user-id'] })
-        .then(user => {
-            if (!user) {
-                let newUser = new User({
-                    _id: mongoose.Types.ObjectId(),
-                    twitch_id: userstate['user-id'],
-                    channel_name: userstate.username,
-                    display_name: userstate['display-name'],
-                    money: 100
-                });
-                User.create(newUser)
-                    .then(res => console.log(`[LOGS] New user added to database`))
-                    .catch(err => console.log(`[ERR] ${err.message}`))
-            } else {
-                return;
-            }
-        })
-}
 
 const verifyBetAmount = (amount, userstate) => {
     let verified = false;
@@ -117,9 +75,41 @@ const getRpsResult = (userstate, bet, userChoice) => {
         })
 }
 
+const getRouletteResult = (playerChoice) => {
+    let redCircle = '🔴',
+    blackCircle = '⚫',
+    colorsArr = [blackCircle, redCircle],
+    notEmojiColorsArr = ['black', 'red'],
+    count = Math.floor(Math.random() * 25),
+    lastColor = '',
+    newMessage = '';
+
+    for (let i = 0; i < count; i++) {
+        if (i == 0) {
+            newMessage = colorsArr[i % colorsArr.length];
+            lastColor = notEmojiColorsArr[i % colorsArr.length];
+            continue;
+        }
+        newMessage += colorsArr[i % colorsArr.length];
+        lastColor = notEmojiColorsArr[i % colorsArr.length];
+    };
+
+    let rouletteGameObj = {
+        newMessage: newMessage,
+        lastColor: lastColor
+    };
+
+    if (playerChoice == lastColor) rouletteGameObj.result = 'won';
+    else rouletteGameObj.result = 'lost';
+
+    return rouletteGameObj;
+}
+
 export {
-    verifyBankAccount,
     verifyBetAmount,
     deductBet,
+    returnBet,
+    addWinnings,
     getRpsResult,
+    getRouletteResult
 }

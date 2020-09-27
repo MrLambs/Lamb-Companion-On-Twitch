@@ -1,6 +1,5 @@
 import { getExampleCommand } from '../../util/functions/chatFunctions'
 import {
-    verifyBankAccount,
     verifyBetAmount,
     deductBet,
     getRpsResult,
@@ -21,7 +20,6 @@ module.exports = {
             let playerChoice = args[1];
             let exampleCommand = getExampleCommand('rps');
 
-            await verifyBankAccount(userstate);
             if (!playerBet) return client.say(channel, `${userstate['display-name']}, make a bet first! ${exampleCommand}`);
             else if (isNaN(playerBet)) return client.say(channel, `${userstate['display-name']}, you need to enter a real number. ${exampleCommand}`);
             else if (Number(playerBet) < 1) client.say(channel, `${userstate['display-name']}, your bet cannot be less than 1. ${exampleCommand}`);

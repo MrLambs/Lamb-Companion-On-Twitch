@@ -1,4 +1,3 @@
-import { verifyBankAccount } from '../../util/functions/casinoFunctions';
 const User = require('../../models/user');
 
 module.exports = {
@@ -10,7 +9,6 @@ module.exports = {
     },
     run: async (client, channel, userstate, message, self, args, adjustedUserstate) => {
         try {
-            await verifyBankAccount(userstate)
             User
             .findOne({ twitch_id: userstate['user-id']})
             .then(user => {

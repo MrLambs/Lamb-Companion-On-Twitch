@@ -31,16 +31,21 @@ const getExampleCommand = (commandName) => {
     let exampleCommand = `(${PREFIX}${command.config.name} ${command.config.usage})`;
 
     return exampleCommand;
-}
+};
 
 const getNeededXp = (level) => {
-    return level * level * 100
-}
+    return level * level * 100;
+};
+
+const titleCase = oldStr => {
+    return oldStr.charAt(0).toUpperCase() + oldStr.slice(1).toLowerCase()
+};
 
 export {
     main,
     checkTwitchChat,
     adjustUserObj,
     getExampleCommand,
-    getNeededXp
+    getNeededXp,
+    titleCase
 };
