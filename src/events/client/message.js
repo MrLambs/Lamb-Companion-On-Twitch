@@ -38,7 +38,7 @@ module.exports = async (client, channel, userstate, message, self) => {
                         user.xp += xpToAdd
                         const xpNeeded = getNeededXp(user.level)
                         if (user.xp >= xpNeeded){
-                            user.levl += 1,
+                            user.level += 1,
                             user.xp -= xpNeeded
                             client.say(channel, `🎊🎉 ${user.display_name}, you are now level ${user.level} with ${user.xp}xp!! [ Next level: ${getNeededXp(user.level)}xp ] 🎉🎊`)
                         };

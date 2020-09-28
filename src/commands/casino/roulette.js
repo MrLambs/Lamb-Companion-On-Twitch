@@ -11,7 +11,7 @@ const User = require('../../models/user')
 module.exports = {
     config: {
         name: "roulette",
-        description: "Play roulette!",
+        description: "Play roulette - last color printed wins!",
         usage: `[bet] [black/red]`,
         category: 'casino'
     },
@@ -20,30 +20,35 @@ module.exports = {
         let playerChoice = args[1];
         if (!playerBet || !Number(playerBet) || Number(playerBet) < 1) return client.say(channel, `You must make a bet first! Your bet cannot be less than 1. ${getExampleCommand('roulette')}`)
         else if (!playerChoice) return client.say(channel, `You must choose [red/black] first! ${getExampleCommand('roulette')}`)
-        else if (!verifyBetAmount(Number(playerBet), userstate)) return client.say(channel, `Sorry, your bet was declined. You do not have that much in your account.`)
         else {
             playerChoice = playerChoice.toLowerCase();
             playerBet = Number(playerBet);
             try {
-                deductBet(Number(playerBet), userstate);
                 let rouletteGame = getRouletteResult(playerChoice);
-                await client.say(channel, `${rouletteGame.newMessage}`);
                 User
                     .findOne({ twitch_id: userstate['user-id'] })
-                    .then(user => {
-                        switch (rouletteGame.result) {
-                            case 'won':
-                                addWinnings(playerBet, userstate)
-                                return client.say(channel, `Congrats ${userstate['display-name']}, you won! Result: ${titleCase(rouletteGame.lastColor)} - [${user.money + playerBet} Lambies]`);
-                                break;
-                            case 'lost':
-                                return client.say(channel, `Sorry ${userstate['display-name']}, you lost! Result: ${titleCase(rouletteGame.lastColor)} - [${user.money - playerBet} Lambies]`);
-                                break;
+                    .then(async user => {
+                        if (user) {
+                            verifyBetAmount(playerBet, userstate).then(async verified => {
+                                if (!verified) return client.say(channel, `Sorry ${userstate['display-name']}, your bet was declined. You do not have enough in your account to complete that bet.`)
+                                else {
+                                    await client.say(channel, `${rouletteGame.newMessage}`);
+                                    switch (rouletteGame.result) {
+                                        case 'won':
+                                            await addWinnings(playerBet, userstate)
+                                            return client.say(channel, `Congrats ${userstate['display-name']}, you won! Result: ${titleCase(rouletteGame.lastColor)} - [${user.money + playerBet} Lambies]`);
+                                            break;
+                                        case 'lost':
+                                            await deductBet(playerBet, userstate)
+                                            return client.say(channel, `Sorry ${userstate['display-name']}, you lost! Result: ${titleCase(rouletteGame.lastColor)} - [${user.money - playerBet} Lambies]`);
+                                            break;
+                                    }
+                                }
+                            })    
                         }
                     })
             } catch (e) {
-                console.log(`[ERR] ${e.message}`); l
-                returnBet(playerBet, userstate);
+                console.log(`[ERR] ${e.message}`);
                 return client.say(channel, `Oops, something went wrong. Your bet was returned. Please try again. - [${user.money} Lambies]`)
             }
         }

@@ -1,11 +1,10 @@
-const mongoose = require('mongoose');
 const User = require('../../models/user')
 
 const addWinnings = (amount, userstate) => {
     try {
         User.findOne({ twitch_id: userstate['user-id'] })
             .then(curUser => {
-                curUser.money += (amount * 2);
+                curUser.money += (amount);
                 curUser.save().catch(err => console.log(`[ERR] ${err.message}`));
             })
     } catch (err) {
@@ -46,7 +45,6 @@ const verifyBetAmount = (amount, userstate) => {
             if (amount <= user.money) return verified = true;
             else return verified
         })
-
 }
 
 const getRpsResult = (userstate, bet, userChoice) => {
@@ -73,7 +71,7 @@ const getRpsResult = (userstate, bet, userChoice) => {
         .catch(err => {
             console.log(`[ERR] ${err.message}`)
         })
-}
+};
 
 const getRouletteResult = (playerChoice) => {
     let redCircle = '🔴',
@@ -103,7 +101,7 @@ const getRouletteResult = (playerChoice) => {
     else rouletteGameObj.result = 'lost';
 
     return rouletteGameObj;
-}
+};
 
 export {
     verifyBetAmount,
