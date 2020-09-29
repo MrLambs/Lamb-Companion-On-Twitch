@@ -10,6 +10,10 @@ module.exports = {
             switch (channel) {
                 case '#countedsheep':
                     return client.say(channel, "Join my Discord - The Sheep Pen! You will gain access to stream announcements and can even play games with me! https://discord.gg/cNkt8rk")
+                    break;
+                case "#enrix_tv":
+                    return;
+                    break;
             }
         } catch (e) {
             console.log(`[ERR] ${e.message}`)
