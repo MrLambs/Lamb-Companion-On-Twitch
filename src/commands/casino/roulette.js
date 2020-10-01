@@ -30,7 +30,7 @@ module.exports = {
                     .then(async user => {
                         if (user) {
                             verifyBetAmount(playerBet, userstate).then(async verified => {
-                                if (!verified) return client.say(channel, `Sorry ${userstate['display-name']}, your bet was declined. You do not have enough in your account to complete that bet.`)
+                                if (!verified) return client.say(channel, `Sorry ${userstate['display-name']}, your bet was declined. Bet cannot exceed 100 Lambies -or- you do not have enough in your account to complete that bet.`)
                                 else {
                                     await client.say(channel, `${rouletteGame.newMessage}`);
                                     switch (rouletteGame.result) {

@@ -14,6 +14,9 @@ module.exports = {
                 case "#enrix_tv":
                     return;
                     break;
+                case "#someguywithachair":
+                    return;
+                    break;
             }
         } catch (e) {
             console.log(`[ERR] ${e.message}`)

@@ -17,6 +17,8 @@ module.exports = async (client) => {
                     randomMessageArr.push(rpsMessage);
                     client.say('enrix_tv', randomMessageArr[Math.floor(Math.random() * randomMessageArr.length)])
                     break;
+                case 'someguywithachair':
+                    break;
             }
         })
     }, 60 * 60 * 1000)

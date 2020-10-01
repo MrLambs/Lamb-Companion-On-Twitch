@@ -42,7 +42,7 @@ const verifyBetAmount = (amount, userstate) => {
     return User
         .findOne({ twitch_id: userstate['user-id'] })
         .then(user => {
-            if (amount <= user.money) return verified = true;
+            if (amount <= user.money && amount <= 100) return verified = true;
             else return verified
         })
 }

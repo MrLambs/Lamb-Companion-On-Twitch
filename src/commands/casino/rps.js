@@ -39,7 +39,7 @@ module.exports = {
                                         }
                                     })
                                 } else {
-                                    client.say(channel, `${userstate['display-name']}, your bet was declined. You do not have that many Lambies in your bank account. ${exampleCommand}`)
+                                    client.say(channel, `${userstate['display-name']}, your bet was declined. Bet cannot exceed 100 Lambies -or- you do not have that many Lambies in your bank account. ${exampleCommand}`)
                                 }
                             })
                         } else client.say(channel, `${userstate['display-name']} since you do not have a Lambies account yet, I have created a new account for you and added a 100 Lambies bonus! Please type !rps again to play. Thanks!`)
