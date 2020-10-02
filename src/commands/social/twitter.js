@@ -17,7 +17,10 @@ module.exports = {
                 case '#someguywithachair':
                     return;
                     break;
-                }
+                case '#prlmordial':
+                    return client.say(channel, "Don't forget to follow me on Twitter for Stream announcements and the latest news. This is the best place to stay up to date with me. https://twitter.com/MrParadox115?s=09")
+                    break;
+            }
         } catch (e) {
             console.log(`[ERR] ${e.message}`)
         }

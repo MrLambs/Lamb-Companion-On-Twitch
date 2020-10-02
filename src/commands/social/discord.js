@@ -17,6 +17,9 @@ module.exports = {
                 case "#someguywithachair":
                     return;
                     break;
+                case '#prlmordial':
+                    return client.say(channel, "Join my Discord - Questionably Questionable! You will gain access to stream announcements and can even play games with me! https://discord.gg/pWzJEYJ")
+                    break;
             }
         } catch (e) {
             console.log(`[ERR] ${e.message}`)
